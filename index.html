@@ -23,116 +23,62 @@
           <span class="brand-mark">SR</span>
           <span>
             <strong>SmartReg Fiscal</strong>
-            <small>Regularização fiscal inteligente</small>
+            <small data-i18n="ui.brandTag">Regularização fiscal inteligente</small>
           </span>
         </a>
         <nav class="topnav" id="topnav">
-          <a href="#" data-scroll="beneficios">Benefícios</a>
-          <a href="#" data-scroll="solucao">Solução</a>
+          <a href="#" data-scroll="beneficios" data-i18n="ui.navBenefits">Benefícios</a>
+          <a href="#" data-scroll="solucao" data-i18n="ui.navSolution">Solução</a>
         </nav>
         <div class="topbar-actions" id="topbarActions"></div>
+        <div class="lang-switch" id="langSwitch" role="group" aria-label="Idioma / Language">
+          <button type="button" class="lang-btn" data-lang="pt">PT</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
       </header>
 
       <!-- TELA: INICIAL -->
       <main class="page" id="page-home">
         <section class="hero">
           <div class="hero-copy">
-            <span class="eyebrow">POC de regularização fiscal digital</span>
-            <h1>Uma experiência clara para consultar débitos, simular acordos e agir com rapidez.</h1>
-            <p>
+            <span class="eyebrow" data-i18n="ui.heroEyebrow">POC de regularização fiscal digital</span>
+            <h1 data-i18n="ui.heroTitle">Uma experiência clara para consultar débitos, simular acordos e agir com rapidez.</h1>
+            <p data-i18n="ui.heroText">
               Este MVP traduz a proposta da SmartReg Fiscal em uma interface moderna, acessível e pronta para demonstração,
               com login mock, extrato consolidado e jornada guiada de regularização.
             </p>
             <div class="hero-actions">
-              <button class="primary-button" id="heroDashboardButton" type="button">Explorar demonstração</button>
-              <a class="link-button" href="#" data-scroll="solucao">Ver módulos do MVP</a>
+              <button class="primary-button" id="heroDashboardButton" type="button" data-i18n="ui.heroExplore">Explorar demonstração</button>
+              <a class="link-button" href="#" data-scroll="solucao" data-i18n="ui.heroSeeModules">Ver módulos do MVP</a>
             </div>
-            <ul class="hero-highlights">
-              <li>Extrato unificado municipal, estadual e federal</li>
-              <li>Simulação de parcelamento com cenários comparativos</li>
-              <li>Notificações e score de priorização em linguagem cidadã</li>
-            </ul>
+            <ul class="hero-highlights" id="heroHighlights"></ul>
           </div>
 
           <div class="hero-panel">
             <div class="panel-card glass-card">
               <div class="panel-header">
                 <span class="status-dot"></span>
-                <strong>Resumo do contribuinte</strong>
+                <strong data-i18n="ui.panelTitle">Resumo do contribuinte</strong>
               </div>
-              <div class="panel-metrics">
-                <article>
-                  <small>Total em aberto</small>
-                  <strong>R$ 48.320,90</strong>
-                  <span>3 esferas integradas</span>
-                </article>
-                <article>
-                  <small>Melhor opção hoje</small>
-                  <strong>24x de R$ 2.113</strong>
-                  <span>Economia de 18% em encargos</span>
-                </article>
-                <article>
-                  <small>Probabilidade de adesão</small>
-                  <strong>82/100</strong>
-                  <span>Perfil favorável à regularização</span>
-                </article>
-              </div>
+              <div class="panel-metrics" id="panelMetrics"></div>
             </div>
           </div>
         </section>
 
         <section class="benefits" id="beneficios">
           <div class="section-heading">
-            <span class="eyebrow">Valor da solução</span>
-            <h2>Uma jornada única para contribuinte e gestão pública.</h2>
+            <span class="eyebrow" data-i18n="ui.benefitsEyebrow">Valor da solução</span>
+            <h2 data-i18n="ui.benefitsTitle">Uma jornada única para contribuinte e gestão pública.</h2>
           </div>
-          <div class="benefit-grid">
-            <article class="feature-card">
-              <h3>Consulta centralizada</h3>
-              <p>Consolida débitos em um só ambiente com visão por esfera, vencimento, status e criticidade.</p>
-            </article>
-            <article class="feature-card">
-              <h3>Decisão assistida</h3>
-              <p>Mostra cenários de parcelamento com economia potencial, prazos e impacto mensal.</p>
-            </article>
-            <article class="feature-card">
-              <h3>Comunicação clara</h3>
-              <p>Traduz linguagem técnica em passos objetivos, avisos inteligentes e próximos passos acionáveis.</p>
-            </article>
-            <article class="feature-card">
-              <h3>Visão de risco</h3>
-              <p>Indica propensão de regularização e ajuda a priorizar campanhas e acompanhamento.</p>
-            </article>
-          </div>
+          <div class="benefit-grid" id="benefitGrid"></div>
         </section>
 
         <section class="solution" id="solucao">
           <div class="section-heading">
-            <span class="eyebrow">Escopo demonstrado</span>
-            <h2>Módulos do MVP front-end</h2>
+            <span class="eyebrow" data-i18n="ui.solutionEyebrow">Escopo demonstrado</span>
+            <h2 data-i18n="ui.solutionTitle">Módulos do MVP front-end</h2>
           </div>
-          <div class="timeline">
-            <article class="timeline-card">
-              <span>01</span>
-              <h3>Login mock</h3>
-              <p>Acesso demonstrativo com perfis prontos para pessoa física, empresa e gestor público.</p>
-            </article>
-            <article class="timeline-card">
-              <span>02</span>
-              <h3>Dashboard principal</h3>
-              <p>KPIs, extrato consolidado, pendências prioritárias e mensagens orientadas por contexto.</p>
-            </article>
-            <article class="timeline-card">
-              <span>03</span>
-              <h3>Simulador visual</h3>
-              <p>Cenários comparativos de regularização sem necessidade de backend nesta etapa.</p>
-            </article>
-            <article class="timeline-card">
-              <span>04</span>
-              <h3>Notificações e próximos passos</h3>
-              <p>Canal unificado para mensagens, status da jornada e CTA para adesão ao acordo.</p>
-            </article>
-          </div>
+          <div class="timeline" id="solutionTimeline"></div>
         </section>
       </main>
 
@@ -141,13 +87,13 @@
         <div class="login-page-wrapper">
           <aside class="login-card glass-card" id="loginCard">
             <div class="login-header">
-              <h3>Entrar no ambiente de demonstração</h3>
-              <p>Use um dos acessos abaixo para visualizar a experiência.</p>
+              <h3 data-i18n="ui.loginHeaderTitle">Entrar no ambiente de demonstração</h3>
+              <p data-i18n="ui.loginHeaderText">Use um dos acessos abaixo para visualizar a experiência.</p>
             </div>
 
             <form id="loginForm" class="login-form">
               <label>
-                Perfil
+                <span data-i18n="ui.profileLabel">Perfil</span>
                 <select id="profileSelect" name="profile">
                   <option value="cidadao">Pessoa física</option>
                   <option value="empresa">Pessoa jurídica</option>
@@ -155,17 +101,17 @@
                 </select>
               </label>
               <label>
-                CPF/CNPJ ou e-mail
+                <span data-i18n="ui.loginIdLabel">CPF/CNPJ ou e-mail</span>
                 <input id="usernameInput" name="username" type="text" value="maria.souza@gov.demo" />
               </label>
               <label>
-                Senha mock
+                <span data-i18n="ui.loginPasswordLabel">Senha mock</span>
                 <input id="passwordInput" name="password" type="password" value="smartreg123" />
               </label>
-              <button class="primary-button full-width" type="submit">Entrar com dados mock</button>
+              <button class="primary-button full-width" type="submit" data-i18n="ui.loginSubmit">Entrar com dados mock</button>
             </form>
 
-            <div class="demo-users">
+            <div class="demo-users" id="demoUsers">
               <button class="user-chip active" type="button" data-profile="cidadao">Maria Souza</button>
               <button class="user-chip" type="button" data-profile="empresa">Metalúrgica Aurora</button>
               <button class="user-chip" type="button" data-profile="gestor">Gestora PGM</button>
@@ -197,8 +143,8 @@
             <article class="content-card">
               <div class="card-title-row">
                 <div>
-                  <span class="card-label">Extrato consolidado</span>
-                  <h4>Débitos identificados</h4>
+                  <span class="card-label" data-i18n="ui.debtCardLabel">Extrato consolidado</span>
+                  <h4 data-i18n="ui.debtCardTitle">Débitos identificados</h4>
                 </div>
                 <span class="pill" id="debtCountPill">0 registros</span>
               </div>
@@ -208,8 +154,8 @@
             <article class="content-card">
               <div class="card-title-row">
                 <div>
-                  <span class="card-label">Simulador</span>
-                  <h4>Melhores cenários</h4>
+                  <span class="card-label" data-i18n="ui.scenarioCardLabel">Simulador</span>
+                  <h4 data-i18n="ui.scenarioCardTitle">Melhores cenários</h4>
                 </div>
               </div>
               <div class="scenario-list" id="scenarioList"></div>
@@ -220,8 +166,8 @@
             <article class="content-card">
               <div class="card-title-row">
                 <div>
-                  <span class="card-label">Motor analítico</span>
-                  <h4>Score de regularização</h4>
+                  <span class="card-label" data-i18n="ui.riskCardLabel">Motor analítico</span>
+                  <h4 data-i18n="ui.riskCardTitle">Score de regularização</h4>
                 </div>
               </div>
               <div class="risk-card" id="riskCard"></div>
@@ -230,8 +176,8 @@
             <article class="content-card">
               <div class="card-title-row">
                 <div>
-                  <span class="card-label">Notificações</span>
-                  <h4>Comunicação ativa</h4>
+                  <span class="card-label" data-i18n="ui.notificationCardLabel">Notificações</span>
+                  <h4 data-i18n="ui.notificationCardTitle">Comunicação ativa</h4>
                 </div>
               </div>
               <div class="notification-list" id="notificationList"></div>
@@ -241,6 +187,7 @@
       </main>
     </div>
 
+    <script src="./i18n.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>

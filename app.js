@@ -1,205 +1,27 @@
-const mockUsers = {
-  cidadao: {
-    profileLabel: "Ambiente do contribuinte",
-    username: "maria.souza@gov.demo",
-    password: "smartreg123",
-    name: "Maria Souza",
-    intro:
-      "Aqui está o resumo consolidado da sua situação fiscal e as melhores opções para regularização.",
-    stats: [
-      { label: "Valor consolidado", value: "R$ 48.320,90", detail: "3 débitos ativos" },
-      { label: "Economia potencial", value: "R$ 8.950,10", detail: "via transação municipal" },
-      { label: "Prazo recomendado", value: "24 meses", detail: "com menor impacto mensal" },
-      { label: "Pendência crítica", value: "1 alerta", detail: "vencimento em 9 dias" },
-    ],
-    debts: [
-      {
-        title: "IPTU em Dívida Ativa - Curitiba",
-        amount: "R$ 12.480,50",
-        meta: "Municipal • Vencido há 132 dias • Prioridade alta",
-      },
-      {
-        title: "ISS Autônomo - Regularização simplificada",
-        amount: "R$ 6.340,40",
-        meta: "Municipal • Elegível para desconto de encargos",
-      },
-      {
-        title: "Débito PGFN consolidado",
-        amount: "R$ 29.500,00",
-        meta: "Federal • Parcelável • Atualizado hoje",
-      },
-    ],
-    scenarios: [
-      {
-        title: "Cenário recomendado",
-        badge: "24x de R$ 2.113",
-        description: "Equilibra desconto em encargos e parcela mensal compatível com seu histórico.",
-        meta: "Entrada reduzida • Economia estimada de 18%",
-      },
-      {
-        title: "Liquidação acelerada",
-        badge: "12x de R$ 3.920",
-        description: "Menor custo total do acordo para quem busca sair da inadimplência mais rápido.",
-        meta: "Economia estimada de 24%",
-      },
-    ],
-    risk: {
-      score: 82,
-      label: "Alta probabilidade de regularização espontânea",
-      description:
-        "Seu perfil demonstra boa aderência a acordos digitais. A recomendação é enviar proposta com desconto e lembrete em até 48 horas.",
-    },
-    notifications: [
-      {
-        title: "Proposta disponível para adesão",
-        tag: "Push gov.br",
-        body: "Existe uma condição vantajosa para regularização do IPTU com economia relevante sobre encargos.",
-        meta: "Enviada hoje às 09:15",
-      },
-      {
-        title: "Prazo de oportunidade",
-        tag: "E-mail",
-        body: "Faltam 9 dias para encerramento da campanha municipal com condições facilitadas.",
-        meta: "Agendada para amanhã às 08:00",
-      },
-    ],
-  },
-  empresa: {
-    profileLabel: "Ambiente empresarial",
-    username: "financeiro@aurora.demo",
-    password: "smartreg123",
-    name: "Metalúrgica Aurora LTDA",
-    intro:
-      "Esta visão prioriza impacto financeiro, passivos por esfera e oportunidades de negociação para a empresa.",
-    stats: [
-      { label: "Passivo total", value: "R$ 318.904,20", detail: "5 inscrições ativas" },
-      { label: "Melhor acordo", value: "60x de R$ 5.870", detail: "com entrada negociada" },
-      { label: "Risco operacional", value: "Moderado", detail: "2 certidões impactadas" },
-      { label: "Alertas urgentes", value: "2", detail: "necessitam ação esta semana" },
-    ],
-    debts: [
-      {
-        title: "ISSQN - Curitiba",
-        amount: "R$ 42.880,90",
-        meta: "Municipal • Inscrito • Suspende CND local",
-      },
-      {
-        title: "Contribuições federais",
-        amount: "R$ 196.023,30",
-        meta: "Federal • PGFN • Elegível a transação",
-      },
-      {
-        title: "ICMS complementar",
-        amount: "R$ 80.000,00",
-        meta: "Estadual • Em fase de consolidação sintética",
-      },
-    ],
-    scenarios: [
-      {
-        title: "Fluxo preservado",
-        badge: "60x de R$ 5.870",
-        description: "Mantém previsibilidade de caixa e reduz pressão imediata no capital de giro.",
-        meta: "Entrada de 6% • Redução parcial de multa",
-      },
-      {
-        title: "Redução máxima",
-        badge: "24x de R$ 12.940",
-        description: "Alternativa com menor custo total do passivo, indicada para quitação mais rápida.",
-        meta: "Economia estimada de 21%",
-      },
-    ],
-    risk: {
-      score: 68,
-      label: "Boa chance de adesão mediante negociação assistida",
-      description:
-        "A empresa tende a responder melhor a ofertas com previsibilidade de caixa e comunicação voltada à retomada de certidões.",
-    },
-    notifications: [
-      {
-        title: "Certidão com restrição",
-        tag: "Painel",
-        body: "Há impacto direto em certidões fiscais enquanto o débito municipal permanecer em aberto.",
-        meta: "Atualizado há 2 horas",
-      },
-      {
-        title: "Campanha empresarial ativa",
-        tag: "SMS",
-        body: "Condições especiais para empresas com histórico de regularização parcial já estão disponíveis.",
-        meta: "Enviada ontem às 16:40",
-      },
-    ],
-  },
-  gestor: {
-    profileLabel: "Ambiente da gestão pública",
-    username: "gestora.pgm@demo.gov",
-    password: "smartreg123",
-    name: "Fernanda Ribeiro",
-    intro:
-      "Esta visão destaca indicadores do piloto, priorização de casos e comunicação ativa para campanhas de adesão.",
-    stats: [
-      { label: "Contribuintes no piloto", value: "7.000", detail: "5 mil PF + 2 mil PJ" },
-      { label: "Taxa de adesão", value: "16,8%", detail: "acima da meta inicial" },
-      { label: "Recuperação estimada", value: "R$ 12,4 mi", detail: "no ciclo atual" },
-      { label: "Fila prioritária", value: "842 casos", detail: "score acima de 75" },
-    ],
-    debts: [
-      {
-        title: "Cluster A - alta propensão",
-        amount: "312 contribuintes",
-        meta: "Score 80+ • Melhor resposta a push e e-mail",
-      },
-      {
-        title: "Cluster B - negociação assistida",
-        amount: "421 contribuintes",
-        meta: "Faixa de débito média • Sensíveis a parcelamento",
-      },
-      {
-        title: "Cluster C - recuperação complexa",
-        amount: "109 contribuintes",
-        meta: "Baixa responsividade • Requer fluxo complementar",
-      },
-    ],
-    scenarios: [
-      {
-        title: "Campanha imediata",
-        badge: "842 alvos",
-        description: "Notificar contribuintes com score alto nas próximas 48 horas tende a maximizar conversão.",
-        meta: "Canal sugerido: push + e-mail",
-      },
-      {
-        title: "Ação de reforço",
-        badge: "421 alvos",
-        description: "Segmentação por faixa de débito e mensagem de previsibilidade melhora a adesão desse grupo.",
-        meta: "Canal sugerido: SMS + atendimento assistido",
-      },
-    ],
-    risk: {
-      score: 74,
-      label: "Campanha com retorno projetado acima da meta da POC",
-      description:
-        "O modelo indica potencial de conversão consistente no cluster de maior score. Priorizar esse grupo reduz custo por regularização.",
-    },
-    notifications: [
-      {
-        title: "Campanha recomendada pelo motor analítico",
-        tag: "Painel gestor",
-        body: "A fila de maior retorno previsto já foi preparada para disparo com linguagem cidadã.",
-        meta: "Gerado hoje às 07:45",
-      },
-      {
-        title: "SLA de integração",
-        tag: "Operação",
-        body: "A fonte municipal operou com fallback em cache por 14 minutos sem impacto na experiência do usuário.",
-        meta: "Ocorrência encerrada",
-      },
-    ],
-  },
-};
+let currentLang = getStoredLang();
+
+function t(path) {
+  const parts = path.split(".");
+  let node = translations[currentLang];
+  for (const part of parts) {
+    node = node[part];
+  }
+  return node;
+}
+
+function ui(key) {
+  return t(`ui.${key}`);
+}
+
+function mockUsers() {
+  return translations[currentLang].data.mockUsers;
+}
 
 // --- Estado de autenticação ---
 let currentUser = null;
 
 // --- Refs do DOM ---
+const langSwitch = document.getElementById("langSwitch");
 const topnav = document.getElementById("topnav");
 const topbarActions = document.getElementById("topbarActions");
 const allPages = document.querySelectorAll(".page");
@@ -208,7 +30,7 @@ const usernameInput = document.getElementById("usernameInput");
 const passwordInput = document.getElementById("passwordInput");
 const loginForm = document.getElementById("loginForm");
 const loginHint = document.getElementById("loginHint");
-const userChips = document.querySelectorAll(".user-chip");
+const demoUsers = document.getElementById("demoUsers");
 const statsGrid = document.getElementById("statsGrid");
 const debtList = document.getElementById("debtList");
 const scenarioList = document.getElementById("scenarioList");
@@ -218,6 +40,10 @@ const debtCountPill = document.getElementById("debtCountPill");
 const welcomeTitle = document.getElementById("welcomeTitle");
 const welcomeCopy = document.getElementById("welcomeCopy");
 const dashboardEyebrow = document.getElementById("dashboardEyebrow");
+const heroHighlights = document.getElementById("heroHighlights");
+const panelMetrics = document.getElementById("panelMetrics");
+const benefitGrid = document.getElementById("benefitGrid");
+const solutionTimeline = document.getElementById("solutionTimeline");
 
 // --- Roteador ---
 const PAGE_ROUTES = new Set(["", "home", "login", "dashboard"]);
@@ -259,7 +85,7 @@ function handleRoute() {
         navigate("login");
         return;
       }
-      setTopbarDashboard(mockUsers[currentUser].name);
+      setTopbarDashboard(mockUsers()[currentUser].name);
       renderDashboard(currentUser);
       showPage("page-dashboard");
       break;
@@ -273,8 +99,8 @@ function handleRoute() {
 function setTopbarHome() {
   topnav.style.display = "";
   topbarActions.innerHTML = `
-    <button class="ghost-button" id="openLoginButton" type="button">Entrar</button>
-    <button class="primary-button" id="heroLoginButton" type="button">Acessar MVP</button>
+    <button class="ghost-button" id="openLoginButton" type="button">${ui("topbarLogin")}</button>
+    <button class="primary-button" id="heroLoginButton" type="button">${ui("topbarAccess")}</button>
   `;
   document.getElementById("openLoginButton").addEventListener("click", () => navigate("login"));
   document.getElementById("heroLoginButton").addEventListener("click", () => navigate("login"));
@@ -283,7 +109,7 @@ function setTopbarHome() {
 function setTopbarLogin() {
   topnav.style.display = "none";
   topbarActions.innerHTML = `
-    <button class="ghost-button" id="backHomeButton" type="button">← Início</button>
+    <button class="ghost-button" id="backHomeButton" type="button">${ui("topbarBackHome")}</button>
   `;
   document.getElementById("backHomeButton").addEventListener("click", () => navigate("home"));
 }
@@ -292,7 +118,7 @@ function setTopbarDashboard(userName) {
   topnav.style.display = "none";
   topbarActions.innerHTML = `
     <span class="user-name-badge">${userName}</span>
-    <button class="ghost-button" id="logoutButton" type="button">Sair</button>
+    <button class="ghost-button" id="logoutButton" type="button">${ui("topbarLogout")}</button>
   `;
   document.getElementById("logoutButton").addEventListener("click", () => {
     currentUser = null;
@@ -300,15 +126,93 @@ function setTopbarDashboard(userName) {
   });
 }
 
+// --- Conteúdo estático traduzido ---
+function renderStaticContent() {
+  document.documentElement.lang = currentLang === "en" ? "en" : "pt-BR";
+
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    el.textContent = t(el.dataset.i18n);
+  });
+
+  langSwitch.querySelectorAll(".lang-btn").forEach((button) => {
+    button.classList.toggle("active", button.dataset.lang === currentLang);
+  });
+
+  heroHighlights.innerHTML = ui("heroHighlights").map((item) => `<li>${item}</li>`).join("");
+
+  panelMetrics.innerHTML = ui("panelMetrics")
+    .map(
+      (metric) => `
+        <article>
+          <small>${metric.label}</small>
+          <strong>${metric.value}</strong>
+          <span>${metric.detail}</span>
+        </article>
+      `,
+    )
+    .join("");
+
+  benefitGrid.innerHTML = ui("benefitCards")
+    .map(
+      (card) => `
+        <article class="feature-card">
+          <h3>${card.title}</h3>
+          <p>${card.text}</p>
+        </article>
+      `,
+    )
+    .join("");
+
+  solutionTimeline.innerHTML = ui("timeline")
+    .map(
+      (item, index) => `
+        <article class="timeline-card">
+          <span>${String(index + 1).padStart(2, "0")}</span>
+          <h3>${item.title}</h3>
+          <p>${item.text}</p>
+        </article>
+      `,
+    )
+    .join("");
+
+  const profileOptions = ui("profileOptions");
+  Array.from(profileSelect.options).forEach((option, index) => {
+    option.textContent = profileOptions[index];
+  });
+
+  const demoLabels = ui("demoUserChips");
+  demoUsers.querySelectorAll(".user-chip").forEach((chip, index) => {
+    chip.textContent = demoLabels[index];
+  });
+}
+
+function setLanguage(lang) {
+  if (lang !== "pt" && lang !== "en") return;
+  currentLang = lang;
+  setStoredLang(lang);
+  renderStaticContent();
+  updateInputs(profileSelect.value || "cidadao");
+
+  const hash = location.hash.replace("#", "") || "";
+  if (hash === "" || hash === "home") {
+    setTopbarHome();
+  } else if (hash === "login") {
+    setTopbarLogin();
+  } else if (hash === "dashboard" && currentUser) {
+    setTopbarDashboard(mockUsers()[currentUser].name);
+    renderDashboard(currentUser);
+  }
+}
+
 // --- Formulário de login ---
 function updateInputs(profileKey) {
-  const user = mockUsers[profileKey];
+  const user = mockUsers()[profileKey];
   profileSelect.value = profileKey;
   usernameInput.value = user.username;
   passwordInput.value = user.password;
-  loginHint.textContent = `Login demonstrativo: ${user.username} com senha ${user.password}.`;
+  loginHint.textContent = ui("loginHint")(user.username, user.password);
   loginHint.style.color = "";
-  userChips.forEach((chip) => {
+  demoUsers.querySelectorAll(".user-chip").forEach((chip) => {
     chip.classList.toggle("active", chip.dataset.profile === profileKey);
   });
 }
@@ -316,12 +220,12 @@ function updateInputs(profileKey) {
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const profileKey = profileSelect.value;
-  const user = mockUsers[profileKey];
+  const user = mockUsers()[profileKey];
   const validCredentials =
     usernameInput.value.trim() === user.username && passwordInput.value === user.password;
 
   if (!validCredentials) {
-    loginHint.textContent = `Credenciais inválidas. Use ${user.username} e senha ${user.password}.`;
+    loginHint.textContent = ui("invalidCredentials")(user.username, user.password);
     loginHint.style.color = "#9a4728";
     return;
   }
@@ -334,10 +238,10 @@ profileSelect.addEventListener("change", (event) => {
   updateInputs(event.target.value);
 });
 
-userChips.forEach((chip) => {
-  chip.addEventListener("click", () => {
-    updateInputs(chip.dataset.profile);
-  });
+demoUsers.addEventListener("click", (event) => {
+  const chip = event.target.closest(".user-chip");
+  if (!chip) return;
+  updateInputs(chip.dataset.profile);
 });
 
 // --- Botões da tela inicial ---
@@ -353,18 +257,24 @@ document.querySelectorAll("[data-scroll]").forEach((link) => {
   });
 });
 
+langSwitch.addEventListener("click", (event) => {
+  const target = event.target.closest("[data-lang]");
+  if (!target) return;
+  setLanguage(target.dataset.lang);
+});
+
 // --- Renderização do dashboard ---
 function currencyWidth(score) {
   return `${Math.max(10, Math.min(100, score))}%`;
 }
 
 function renderDashboard(profileKey) {
-  const user = mockUsers[profileKey];
+  const user = mockUsers()[profileKey];
   dashboardEyebrow.textContent = user.profileLabel;
   welcomeTitle.textContent =
-    profileKey === "gestor" ? `Olá, ${user.name}.` : `${user.name}, este é o seu painel.`;
+    profileKey === "gestor" ? ui("welcomeGreeting")(user.name) : ui("welcomePanel")(user.name);
   welcomeCopy.textContent = user.intro;
-  debtCountPill.textContent = `${user.debts.length} registros`;
+  debtCountPill.textContent = ui("debtCountLabel")(user.debts.length);
 
   statsGrid.innerHTML = user.stats
     .map(
@@ -410,7 +320,7 @@ function renderDashboard(profileKey) {
   riskCard.innerHTML = `
     <div class="risk-header">
       <div>
-        <small>Score atual</small>
+        <small>${ui("riskScoreLabel")}</small>
         <strong class="risk-score">${user.risk.score}/100</strong>
       </div>
       <span class="pill">${user.risk.label}</span>
@@ -438,5 +348,6 @@ function renderDashboard(profileKey) {
 }
 
 // --- Inicialização ---
+renderStaticContent();
 window.addEventListener("hashchange", handleRoute);
 handleRoute();
